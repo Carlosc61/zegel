@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redes Sociales y Salud Mental</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6B8E6F;
+            --primary-light: #A8D5E2;
+            --accent: #D97E5C;
+            --dark: #2C3E50;
+            --light: #F5F5F5;
+            --border: #E8E8E8;
+            --muted: #7A8A8A;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 1.75rem; }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 0.875rem;
+            margin-left: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(to bottom, #E8F4F8, var(--white));
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 50rem;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--muted);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        button {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--dark);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--light);
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 0;
+        }
+
+        section.light-bg {
+            background: linear-gradient(to bottom, var(--white), #E8F4F8);
+        }
+
+        section.orange-bg {
+            background: linear-gradient(to bottom, var(--white), #FFF3E8);
+        }
+
+        section.green-bg {
+            background: linear-gradient(to bottom, var(--white), #E8F5E8);
+        }
+
+        section.primary-bg {
+            background: linear-gradient(135deg, var(--primary), rgba(107, 142, 111, 0.8));
+            color: var(--white);
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+
+        section.primary-bg h2 {
+            color: var(--white);
+        }
+
+        .section-divider {
+            height: 4px;
+            background: linear-gradient(to right, transparent, var(--border), transparent);
+            margin: 3rem 0;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--light);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: box-shadow 0.3s;
+            margin-bottom: 1.5rem;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .card-with-icon {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .card-icon {
+            width: 2rem;
+            height: 2rem;
+            color: var(--primary);
+            flex-shrink: 0;
+            font-size: 1.5rem;
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        .card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        }
+
+        /* Advantages */
+        .advantages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Disadvantages */
+        .disadvantage-card {
+            border-left: 4px solid var(--accent);
+        }
+
+        .disadvantage-card h3 {
+            color: var(--accent);
+        }
+
+        /* Steps */
+        .steps {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .step-number {
+            width: 3rem;
+            height: 3rem;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-content p {
+            color: var(--muted);
+        }
+
+        /* Warnings */
+        .warnings {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .warning-item {
+            display: flex;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: var(--white);
+            border-radius: 0.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .warning-icon {
+            color: var(--accent);
+            flex-shrink: 0;
+            width: 1.25rem;
+        }
+
+        .warning-item p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        /* FAQ */
+        .faq-item {
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: var(--light);
+            padding: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--primary);
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: #EFEFEF;
+        }
+
+        .faq-answer {
+            padding: 1rem;
+            background: var(--white);
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            display: none;
+            line-height: 1.8;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        .faq-toggle {
+            transition: transform 0.3s;
+        }
+
+        .faq-toggle.active {
+            transform: rotate(180deg);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--light);
+            border-top: 1px solid var(--border);
+            padding: 3rem 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        footer h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        footer p {
+            color: var(--muted);
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer li {
+            margin-bottom: 0.5rem;
+        }
+
+        footer a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.875rem;
+        }
+
+        /* Highlight */
+        .highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.75rem; }
+            h3 { font-size: 1.25rem; }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .grid, .advantages, .warnings {
+                grid-template-columns: 1fr;
+            }
+
+            .step {
+                flex-direction: column;
+            }
+
+            .step-number {
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🧠</div>
+                    <span>Salud Mental</span>
+                </div>
+                <nav>
+                    <a href="#ventajas">Ventajas</a>
+                    <a href="#desventajas">Desventajas</a>
+                    <a href="#cambios">Cambios</a>
+                    <a href="#faq">Preguntas</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Redes Sociales y Salud Mental</h1>
+                <p>Aunque muchos disfrutamos mantenernos conectados en las redes sociales, el uso excesivo puede generar sentimientos de adicción, ansiedad, depresión, aislamiento y FOMO. Aquí te mostramos cómo modificar tus hábitos y mejorar tu estado de ánimo.</p>
+                <div class="button-group">
+                    <button class="btn-primary">Comenzar</button>
+                    <button class="btn-secondary">Aprender más</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cómo afectan las redes sociales -->
+    <section>
+        <div class="container">
+            <div style="max-width: 50rem; margin: 0 auto;">
+                <h2>¿Cómo afectan las redes sociales la salud mental?</h2>
+                <p style="font-size: 1.1rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.5rem;">
+                    Los humanos somos seres sociales. Necesitamos la compañía de los demás para prosperar, y la fuerza de nuestras conexiones tiene un enorme impacto en nuestra salud mental y felicidad. Estar conectado socialmente puede aliviar el estrés, la ansiedad y la depresión, aumentar la autoestima, brindar consuelo y alegría, prevenir la soledad e incluso agregar años a tu vida.
+                </p>
+                <p style="font-size: 1.1rem; color: var(--muted); line-height: 1.8;">
+                    Sin embargo, aunque las redes sociales como Facebook, Instagram, TikTok y X fueron diseñadas para acercarnos, pasar demasiado tiempo en ellas puede hacerte sentir más solo y aislado. Lo importante es recordar que <span class="highlight">las redes sociales nunca pueden sustituir la conexión humana en el mundo real</span>. El contacto en persona activa las hormonas que alivian el estrés y te hacen sentir más feliz y saludable.
+                </p>
+            </div>
+            <div class="section-divider"></div>
+        </div>
+    </section>
+
+    <!-- Ventajas -->
+    <section id="ventajas" class="light-bg">
+        <div class="container">
+            <h2>Ventajas de las redes sociales</h2>
+            <div class="advantages">
+                <div class="card card-with-icon">
+                    <div class="card-icon">👥</div>
+                    <div>
+                        <h3>Conectar con otros</h3>
+                        <p>Comunicarte y mantenerte al día con familiares y amigos en todo el mundo.</p>
+                    </div>
+                </div>
+                <div class="card card-with-icon">
+                    <div class="card-icon">🤝</div>
+                    <div>
+                        <h3>Encontrar comunidad</h3>
+                        <p>Relacionarte con personas que comparten tus intereses, ambiciones y valores.</p>
+                    </div>
+                </div>
+                <div class="card card-with-icon">
+                    <div class="card-icon">📈</div>
+                    <div>
+                        <h3>Promover causas</h3>
+                        <p>Sensibilizar sobre temas importantes y promover cambios positivos.</p>
+                    </div>
+                </div>
+                <div class="card card-with-icon">
+                    <div class="card-icon">❤️</div>
+                    <div>
+                        <h3>Apoyo emocional</h3>
+                        <p>Buscar y ofrecer apoyo durante momentos difíciles de la vida.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Desventajas -->
+    <section id="desventajas">
+        <div class="container">
+            <h2>Desventajas de las redes sociales</h2>
+            <div style="max-width: 900px; margin: 0 auto;">
+                <div class="card disadvantage-card">
+                    <h3>Inadecuación e inseguridad</h3>
+                    <p>Las imágenes retocadas y los highlights de otros pueden hacerte sentir inseguro sobre tu propia vida y apariencia.</p>
+                </div>
+                <div class="card disadvantage-card">
+                    <h3>FOMO y adicción</h3>
+                    <p>El miedo a perderse algo puede desencadenar ansiedad y uso compulsivo, similar a una adicción.</p>
+                </div>
+                <div class="card disadvantage-card">
+                    <h3>Aislamiento paradójico</h3>
+                    <p>Aunque está diseñado para conectar, el uso excesivo puede aumentar los sentimientos de soledad.</p>
+                </div>
+                <div class="card disadvantage-card">
+                    <h3>Depresión y ansiedad</h3>
+                    <p>La falta de contacto en persona afecta tu salud mental más que las interacciones virtuales.</p>
+                </div>
+                <div class="card disadvantage-card">
+                    <h3>Acoso cibernético</h3>
+                    <p>Aproximadamente el 10% de los adolescentes reportan haber sido acosados en redes sociales.</p>
+                </div>
+                <div class="card disadvantage-card">
+                    <h3>Ensimismamiento</h3>
+                    <p>Compartir constantemente puede crear egocentrismo poco saludable y alejarte de conexiones reales.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Señales de alerta -->
+    <section class="orange-bg">
+        <div class="container">
+            <div style="max-width: 50rem; margin: 0 auto;">
+                <h2 style="display: flex; align-items: center; justify-content: center; gap: 0.5rem;">⚠️ Señales de que las redes sociales afectan tu salud mental</h2>
+                <p style="text-align: center; color: var(--muted); margin-bottom: 2rem;">No existe una cantidad específica de tiempo que indique uso poco saludable. Lo importante es cómo te sientes y cómo afecta tu vida. Aquí hay señales de alerta:</p>
+                <div class="warnings">
+                    <div class="warning-item">
+                        <span class="warning-icon">⚠️</span>
+                        <p>Compararse desfavorablemente con otros</p>
+                    </div>
+                    <div class="warning-item">
+                        <span class="warning-icon">⚠️</span>
+                        <p>Experimentar acoso cibernético</p>
+                    </div>
+                    <div class="warning-item">
+                        <span class="warning-icon">⚠️</span>
+                        <p>Estar distraído en la escuela o trabajo</p>
+                    </div>
+                    <div class="warning-item">
+                        <span class="warning-icon">⚠️</span>
+                        <p>No tener tiempo para la autorreflexión</p>
+                    </div>
+                    <div class="warning-item">
+                        <span class="warning-icon">⚠️</span>
+                        <p>Participar en comportamientos de riesgo por likes</p>
+                    </div>
+                    <div class="warning-item">
+                        <span class="warning-icon">⚠️</span>
+                        <p>Sufrir problemas para dormir</p>
+                    </div>
+                    <div class="warning-item">
+                        <span class="warning-icon">⚠️</span>
+                        <p>Empeoramiento de ansiedad o depresión</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pasos para cambiar -->
+    <section id="cambios">
+        <div class="container">
+            <h2>Cómo cambiar tu uso de las redes sociales</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content card">
+                        <h3>Reduzca su tiempo en línea</h3>
+                        <p>Comience monitoreando cuánto tiempo pasa en redes sociales. Luego establezca metas realistas para reducirlo. Apague notificaciones, no lleve el teléfono a la cama, y limite el número de veces que revisa su dispositivo.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content card">
+                        <h3>Cambie el enfoque</h3>
+                        <p>Pregúntese por qué está accediendo a las redes sociales. ¿Es por aburrimiento, soledad, o tiene un propósito específico? Busque alternativas más saludables para satisfacer esas necesidades.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content card">
+                        <h3>Pase más tiempo con amigos en persona</h3>
+                        <p>Dedique tiempo regular a relacionarse presencialmente. El contacto en persona es esencial para la salud mental y reduce la dependencia de las redes sociales.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content card">
+                        <h3>Exprese gratitud</h3>
+                        <p>Lleve un diario de gratitud o practique la conciencia plena. Esto contrarresta los sentimientos de insuficiencia que generan las redes sociales.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ayudando a niños y adolescentes -->
+    <section class="green-bg">
+        <div class="container">
+            <div style="max-width: 50rem; margin: 0 auto;">
+                <h2>Ayudando a niños y adolescentes</h2>
+                <p style="color: var(--muted); margin-bottom: 2rem; line-height: 1.8;">
+                    La infancia y adolescencia pueden estar llenas de desafíos. Las redes sociales a menudo exacerban problemas como ansiedad, acoso, depresión y problemas de autoestima. Si te preocupa el uso de redes sociales de tu hijo, aquí hay estrategias efectivas:
+                </p>
+                <div class="card">
+                    <h3>Vigila y limita el uso</h3>
+                    <p>Usa aplicaciones de control parental para limitar datos o restringir horarios. Ajusta configuraciones de privacidad para proteger de acosadores.</p>
+                </div>
+                <div class="card">
+                    <h3>Habla sobre problemas subyacentes</h3>
+                    <p>¿Tiene dificultades para integrarse? ¿Sufre de ansiedad social? Entiende qué hay detrás del uso excesivo.</p>
+                </div>
+                <div class="card">
+                    <h3>Establece límites claros</h3>
+                    <p>Prohibe redes sociales hasta terminar tareas, no permitas teléfonos en la mesa o dormitorio, planifica actividades familiares sin dispositivos.</p>
+                </div>
+                <div class="card">
+                    <h3>Enseña pensamiento crítico</h3>
+                    <p>Explica que las redes sociales no reflejan la vida real. Las imágenes están editadas y la gente solo comparte lo mejor.</p>
+                </div>
+                <div class="card">
+                    <h3>Fomenta actividades offline</h3>
+                    <p>Motívalo a hacer ejercicio, practicar pasatiempos e interactuar en el mundo real. El ejercicio es excelente para aliviar ansiedad y estrés.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+        <div class="container">
+            <h2>Preguntas frecuentes</h2>
+            <div style="max-width: 50rem; margin: 0 auto;">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>¿Cuánto tiempo en redes sociales es demasiado?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Un estudio de la Universidad de Pensilvania encontró que reducir el uso a 30 minutos diarios reduce significativamente la ansiedad, depresión y soledad. Sin embargo, lo más importante es cómo te sientes después de usar las redes sociales, no solo el tiempo invertido.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>¿Cómo sé si tengo adicción a las redes sociales?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Algunos indicadores incluyen: revisar constantemente tu teléfono, sentir ansiedad cuando no puedes acceder, descuidar relaciones en persona, problemas para dormir, y usar las redes sociales para escapar de emociones negativas. Si el uso afecta tu salud mental o vida diaria, es hora de reevaluar tus hábitos.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>¿Las redes sociales son completamente malas?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        No. Las redes sociales tienen beneficios reales: permiten conectar con amigos y familia, encontrar comunidades de apoyo, sensibilizar sobre temas importantes y expresar creatividad. El problema surge cuando el uso se vuelve excesivo o reemplaza las conexiones en persona.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>¿Qué puedo hacer si mis hijos usan demasiadas redes sociales?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Evita simplemente confiscar dispositivos. En su lugar: vigila su uso, habla sobre problemas subyacentes, establece límites claros (sin redes sociales durante tareas o comidas), enseña que las redes no reflejan la vida real, y fomenta actividades offline como ejercicio y pasatiempos.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>¿Cómo puedo reducir mi uso de redes sociales?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Comienza reduciendo gradualmente: usa aplicaciones para monitorear tiempo, apaga notificaciones, no lleves el teléfono a la cama, elimina aplicaciones del teléfono, establece horarios específicos para revisar, y reemplaza el tiempo con actividades más saludables como ejercicio, tiempo con amigos en persona, o pasatiempos.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>¿Puede ayudarme un terapeuta con la adicción a las redes sociales?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Sí. Un terapeuta puede ayudarte a entender por qué usas las redes sociales excesivamente (¿es por FOMO, soledad, depresión?), desarrollar estrategias de afrontamiento más saludables, y abordar problemas subyacentes como ansiedad o baja autoestima que pueden estar alimentando el uso compulsivo.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="primary-bg">
+        <div class="container">
+            <div style="max-width: 50rem; margin: 0 auto; text-align: center;">
+                <h2>¿Necesitas ayuda profesional?</h2>
+                <p style="font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.95;">
+                    Un terapeuta certificado puede ayudarte a entender tus hábitos digitales y desarrollar estrategias más saludables para tu bienestar mental.
+                </p>
+                <button class="btn-primary" style="background: var(--white); color: var(--primary);">Habla con un terapeuta</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3>Sobre este sitio</h3>
+                    <p>Información basada en investigación sobre el impacto de las redes sociales en la salud mental.</p>
+                </div>
+                <div>
+                    <h3>Recursos</h3>
+                    <ul>
+                        <li><a href="#">Adicción a teléfonos</a></li>
+                        <li><a href="#">Ansiedad</a></li>
+                        <li><a href="#">Depresión</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Contacto</h3>
+                    <p>Para más información sobre salud mental, consulta con un profesional certificado.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Redes Sociales y Salud Mental. Basado en investigación de HelpGuide.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const toggle = element.querySelector('.faq-toggle');
+            
+            answer.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
